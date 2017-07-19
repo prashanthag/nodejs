@@ -1,24 +1,29 @@
-For people wanting a server runnable from within NodeJS script:
+Node.js quick file server (static files over HTTP)
+  * https://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http
+  * https://stackoverflow.com/questions/33260093/node-js-and-webpack-unexpected-token
+  * https://stackoverflow.com/questions/31495743/node-angular-app-uncaught-syntaxerror-unexpected-token
 
-You can use expressjs/serve-static which replaces connect.static (which is no longer available as of connect 3):
+  For people wanting a server runnable from within NodeJS script:
+
+  You can use expressjs/serve-static which replaces connect.static (which is no longer available as of connect 3):
 
 
-myapp.js:
+  myapp.js:
 
-var http = require('http');
+  var http = require('http');
 
-var finalhandler = require('finalhandler');
-var serveStatic = require('serve-static');
+  var finalhandler = require('finalhandler');
+  var serveStatic = require('serve-static');
 
-var serve = serveStatic("./");
+  var serve = serveStatic("./");
 
-var server = http.createServer(function(req, res) {
-  var done = finalhandler(req, res);
-  serve(req, res, done);
-});
+  var server = http.createServer(function(req, res) {
+    var done = finalhandler(req, res);
+    serve(req, res, done);
+  });
 
-server.listen(8000);
-and then from command line:
+  server.listen(8000);
+  and then from command line:
 
-$ npm install finalhandler serve-static
-$ node myapp.js
+  $ npm install finalhandler serve-static
+  $ node myapp.js
